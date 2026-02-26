@@ -12,6 +12,7 @@ function Navbar() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [alphabetFinished, setAlphabetFinished] = useState(false);
+  const [greetingsFinished, setGreetingsFinished] = useState(false);
   const [hasCompletedFirstLesson, setHasCompletedFirstLesson] = useState(false);
   const [hasPassedAnyExam, setHasPassedAnyExam] = useState(false);
   const [lockNotification, setLockNotification] = useState(null);
@@ -92,15 +93,18 @@ function Navbar() {
     const check = async () => {
       if (!currentUser) {
         setAlphabetFinished(false);
+        setGreetingsFinished(false);
         setHasCompletedFirstLesson(false);
         setHasPassedAnyExam(false);
         return;
       }
-      const [finished, profile] = await Promise.all([
+      const [alphabetDone, greetingsDone, profile] = await Promise.all([
         canCompleteLesson(currentUser.uid, 'alphabet', 26),
+        canCompleteLesson(currentUser.uid, 'greetings', 20),
         getUserProfile(currentUser.uid)
       ]);
-      setAlphabetFinished(finished);
+      setAlphabetFinished(alphabetDone);
+      setGreetingsFinished(greetingsDone);
       const completed = profile?.progress?.lessonsCompleted || [];
       setHasCompletedFirstLesson(completed.length > 0);
       const examsPassed = profile?.progress?.examsPassed || [];
@@ -202,6 +206,26 @@ function Navbar() {
                     onClick={() => handleLockedClick('Complete the Alphabet lesson first (view all letters A–Z) to unlock Greetings.')}
                   >
                     Greetings 🔒
+                  </span>
+                )}
+              </li>
+              <li>
+                {greetingsFinished ? (
+                  <Link
+                    to="/lessons/numbers"
+                    className={isActive('/lessons/numbers') ? 'active' : ''}
+                    onClick={closeMobileMenu}
+                  >
+                    Numbers
+                  </Link>
+                ) : (
+                  <span
+                    className="nav-link"
+                    style={{ opacity: 0.7, cursor: 'pointer', padding: '10px 15px', display: 'block' }}
+                    title="Finish Greetings to unlock Numbers"
+                    onClick={() => handleLockedClick('Complete the Greetings lesson first to unlock Numbers (1–10).', '/lessons/greetings')}
+                  >
+                    Numbers 🔒
                   </span>
                 )}
               </li>

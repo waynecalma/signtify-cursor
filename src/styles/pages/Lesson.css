@@ -48,6 +48,7 @@
 }
 
 .letter-button {
+  position: relative;
   aspect-ratio: 1;
   font-size: 1.8rem;
   font-weight: 800;
@@ -118,6 +119,21 @@
   font-size: 0.8rem;
 }
 
+.letter-button.letter-tile-with-svg {
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-button .letter-tile-svg {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
 .greeting-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -185,6 +201,8 @@
   right: 8px;
   font-size: 0.9rem;
 }
+
+.greeting-button:hover:not(.locked) {
   transform: translateY(-4px);
   box-shadow: 0 6px 16px rgba(28, 176, 246, 0.2);
 }
@@ -265,14 +283,24 @@
   }
 }
 
-.sign-placeholder .sign-letter-a-svg {
-  max-width: 100%;
-  max-height: 280px;
-  width: auto;
-  height: auto;
+.sign-placeholder .sign-letter-a-svg,
+.sign-placeholder .sign-letter-svg {
+  width: 200px;
+  height: 280px;
   object-fit: contain;
+  object-position: center;
   display: block;
   margin: 0 auto;
+}
+
+.sign-placeholder .sign-letter-svg.sign-letter-i {
+  width: 120px;
+  height: 168px;
+}
+
+.sign-placeholder .sign-letter-svg.sign-letter-h {
+  width: 240px;
+  height: 336px;
 }
 
 .sign-placeholder .sign-placeholder-emoji {
@@ -287,8 +315,9 @@
 }
 
 .sign-description {
-  text-align: center;
-  padding: 2rem;
+  text-align: left;
+  padding: 2rem 2.5rem;
+  margin: 0 1.5rem;
   background: #F7F7F7;
   border-radius: 16px;
 }
@@ -298,14 +327,33 @@
   margin-bottom: 1rem;
   font-size: 1.5rem;
   font-weight: 700;
+  text-align: center;
 }
 
 .sign-description p {
   color: #555;
   line-height: 1.8;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0 0 1rem 0;
   font-size: 1.05rem;
+}
+
+.sign-description p:last-child {
+  margin-bottom: 0;
+}
+
+.sign-description .sign-steps {
+  text-align: left;
+  max-width: 100%;
+  margin: 1rem 0 1.25rem;
+  padding-left: 1.5rem;
+  color: #555;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.sign-description .sign-steps li {
+  margin-bottom: 0.5rem;
 }
 
 .lesson-actions {
@@ -501,6 +549,96 @@
   font-size: 0.9rem;
 }
 
+/* Letter Instructions Styles */
+.letter-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.handshape-summary {
+  font-size: 1.05rem;
+  color: #333;
+  background: #EAF6FF;
+  border-left: 4px solid #1CB0F6;
+  padding: 0.75rem 1rem;
+  border-radius: 0 8px 8px 0;
+  margin: 0 !important;
+}
+
+.instruction-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #E5E5E5;
+}
+
+.instruction-section h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2B2B2B;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.steps-list {
+  padding-left: 1.5rem;
+  margin: 0;
+  color: #444;
+  line-height: 1.9;
+  font-size: 1rem;
+}
+
+.steps-list li {
+  margin-bottom: 0.4rem;
+  padding-left: 0.25rem;
+}
+
+.steps-list li::marker {
+  color: #58CC02;
+  font-weight: 700;
+}
+
+.tips-section {
+  border-left: 4px solid #FFD700;
+  background: #FFFDF0;
+}
+
+.tips-section h4 {
+  color: #B8860B;
+}
+
+.tips-list {
+  padding-left: 1.5rem;
+  margin: 0;
+  color: #555;
+  line-height: 1.9;
+  font-size: 1rem;
+  list-style-type: disc;
+}
+
+.tips-list li {
+  margin-bottom: 0.4rem;
+}
+
+.mistakes-section {
+  border-left: 4px solid #FF4B4B;
+  background: #FFF5F5;
+}
+
+.mistakes-section h4 {
+  color: #CC0000;
+}
+
+.common-mistakes {
+  color: #555;
+  line-height: 1.8;
+  font-size: 1rem;
+  margin: 0 !important;
+}
+
 @media (max-width: 768px) {
   .letter-grid {
     grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
@@ -521,5 +659,14 @@
 
   .sign-placeholder {
     font-size: 3rem;
+  }
+
+  .instruction-section {
+    padding: 1rem;
+  }
+
+  .steps-list,
+  .tips-list {
+    font-size: 0.95rem;
   }
 }

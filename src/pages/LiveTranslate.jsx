@@ -10,8 +10,10 @@ function LiveTranslate() {
   const [cameraError, setCameraError] = useState(null);
   const [detectionStatus, setDetectionStatus] = useState('Camera Ready');
   const [allProbabilities, setAllProbabilities] = useState({});
+  const [showMediaPipeOverlay, setShowMediaPipeOverlay] = useState(true);
   
   const holisticRef = useRef(null);
+  const showMediaPipeOverlayRef = useRef(true);
   const cameraRef = useRef(null);
   const drawingUtilsLoadedRef = useRef(false);
   const sequenceRef = useRef([]);
@@ -238,8 +240,8 @@ function LiveTranslate() {
         ctx.scale(-1, 1);
         ctx.translate(-canvas.width, 0);
         
-        // Draw landmarks
-        if (window.drawConnectors && window.drawLandmarks) {
+        // Draw landmarks only when overlay is enabled
+        if (showMediaPipeOverlayRef.current && window.drawConnectors && window.drawLandmarks) {
           // Pose
           if (results.poseLandmarks) {
             window.drawConnectors(ctx, results.poseLandmarks, window.POSE_CONNECTIONS, 
@@ -336,6 +338,18 @@ function LiveTranslate() {
 
   const clearHistory = () => setTranslationHistory([]);
 
+  const toggleMediaPipeOverlay = () => {
+    setShowMediaPipeOverlay(prev => {
+      const next = !prev;
+      showMediaPipeOverlayRef.current = next;
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    showMediaPipeOverlayRef.current = showMediaPipeOverlay;
+  }, [showMediaPipeOverlay]);
+
   useEffect(() => {
     return () => stopCamera();
   }, []);
@@ -404,7 +418,22 @@ function LiveTranslate() {
             </div>
 
             {isCameraActive && (
-              <div style={{ marginTop: '15px', textAlign: 'center' }}>
+              <div style={{ marginTop: '15px', display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                <button
+                  onClick={toggleMediaPipeOverlay}
+                  style={{
+                    padding: '10px 20px',
+                    fontSize: '1rem',
+                    background: showMediaPipeOverlay ? '#95a5a6' : '#3498db',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontWeight: 'bold'
+                  }}
+                >
+                  {showMediaPipeOverlay ? 'Hide skeleton overlay' : 'Show skeleton overlay'}
+                </button>
                 <button onClick={stopCamera} style={{ padding: '10px 20px', fontSize: '1rem', background: '#e74c3c', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}>
                   Stop Camera
                 </button>

@@ -196,12 +196,28 @@ function LessonGreetings() {
         )}
         {!isCompleted && (
           <p style={{ marginBottom: '10px', color: '#666', fontSize: '0.9rem' }}>
-            Finish viewing all greetings to complete this lesson.
+            Finish viewing all greetings to unlock the Numbers lesson.
           </p>
         )}
-        <Link to="/lessons/alphabet">
-          <button className="secondary">← Back: Alphabet</button>
-        </Link>
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <Link to="/lessons/alphabet">
+            <button className="secondary">← Back: Alphabet</button>
+          </Link>
+          {isCompleted ? (
+            <Link to="/lessons/numbers">
+              <button className="secondary">Next: Numbers →</button>
+            </Link>
+          ) : (
+            <button
+              className="secondary"
+              disabled
+              style={{ opacity: 0.7, cursor: 'not-allowed' }}
+              title="Finish viewing all greetings to unlock Numbers"
+            >
+              🔒 Next: Numbers
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
