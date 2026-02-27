@@ -9,10 +9,10 @@ function MiniQuizGreetings() {
   const quizId = 'greetings';
   const questions = [
     { question: 'What greeting is this sign?', answer: 'Hello', options: ['Hello', 'Goodbye', 'Thank You', 'Please'] },
-    { question: 'What greeting is this sign?', answer: 'Thank You', options: ['Sorry', 'Thank You', 'Welcome', 'Help'] },
+    { question: 'What greeting is this sign?', answer: 'Thank You', options: ['Sorry', 'Thank You', 'Welcome', 'Excuse me'] },
     { question: 'What greeting is this sign?', answer: 'Good Morning', options: ['Good Morning', 'Good Night', 'Good afternoon', 'Goodbye'] },
     { question: 'What greeting is this sign?', answer: 'How are you?', options: ['How are you?', 'Nice to meet you', 'See you later', 'Take care'] },
-    { question: 'What greeting is this sign?', answer: 'Yes', options: ['Yes', 'No', 'Maybe', 'Help'] },
+    { question: 'What greeting is this sign?', answer: 'Goodbye', options: ['Hello', 'Goodbye', 'See you later', 'Take care'] },
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -139,7 +139,7 @@ function MiniQuizGreetings() {
             <Link to="/lessons/greetings">
               <button className="secondary">Review Lesson</button>
             </Link>
-            <Link to="/proficiency-exam/greetings">
+            <Link to="/proficiency-exams">
               <button className="secondary">Take Proficiency Exam</button>
             </Link>
             <Link to="/profile">

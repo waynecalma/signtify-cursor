@@ -293,6 +293,13 @@
   margin: 0 auto;
 }
 
+.sign-placeholder .sign-number-svg.sign-number-rotated {
+  width: 280px;
+  height: 200px;
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+
 .sign-placeholder .sign-letter-svg.sign-letter-i {
   width: 120px;
   height: 168px;

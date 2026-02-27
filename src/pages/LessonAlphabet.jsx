@@ -25,7 +25,7 @@ const letterInstructions = {
     tips: [
       "The thumb should NOT be tucked inside your fist - it must be visible on the outside.",
       "Keep your fingers tucked neatly; don't let them stick out.",
-      "This handshape is also used in signs like 'apple,' 'fine,' and 'good.'"
+      "This handshape appears in other ASL signs as well, so building a clear and consistent 'A' will make later vocabulary easier to learn."
     ],
     commonMistakes: "Avoid tucking your thumb inside your fist or letting your fingers stick out loosely."
   },
@@ -59,7 +59,7 @@ const letterInstructions = {
     tips: [
       "Imagine you're holding a small ball or cup - that's the curve you want.",
       "The space between your thumb and fingers should form a clear 'C' shape.",
-      "This handshape is also used in signs like 'cup' and 'catch.'"
+      "This handshape appears in many ASL signs, so getting a clear 'C' shape will help you as you learn more vocabulary."
     ],
     commonMistakes: "Don't close your hand too tightly - the 'C' shape should be open and visible. Avoid pointing your palm directly at the viewer."
   },
@@ -76,7 +76,7 @@ const letterInstructions = {
     tips: [
       "Think of this as an 'OK' gesture with your index finger pointing up.",
       "The circle should be round, not flattened.",
-      "This handshape is also used in signs like 'drink' and 'dance.'"
+      "This handshape appears in many ASL signs, so a precise 'D' shape will support clear fingerspelling and later words."
     ],
     commonMistakes: "Make sure only your index finger is extended - don't let other fingers stick out. Keep the circle formed by your thumb and fingers tight."
   },
@@ -110,7 +110,7 @@ const letterInstructions = {
     tips: [
       "This is the opposite of 'D' - instead of one finger up, you have three fingers up.",
       "The circle between index and thumb should be small, like you're making the 'OK' sign.",
-      "This handshape is also used in signs like 'fine' and 'five.'"
+      "This handshape appears in many ASL signs; focus on a small, clear circle so it is easy to read."
     ],
     commonMistakes: "Don't let your three extended fingers curl or touch each other. Make sure the circle between index and thumb is clearly visible."
   },
@@ -161,7 +161,7 @@ const letterInstructions = {
     tips: [
       "This is the 'pinky promise' finger extended up.",
       "Only your pinky should be extended - all other fingers are in a fist.",
-      "This handshape is also used in signs like 'I' (the pronoun) and 'important.'"
+      "This handshape appears in many ASL signs; keeping only the pinky extended makes the letter easy to recognize."
     ],
     commonMistakes: "Don't extend any finger other than your pinky. Make sure your pinky is straight, not curved."
   },
@@ -195,7 +195,7 @@ const letterInstructions = {
     tips: [
       "This is like the 'V' handshape but with your thumb inserted between the fingers.",
       "Your thumb should touch the middle finger, not just float between them.",
-      "This handshape is also used in signs like 'king' and 'kiss.'"
+      "This handshape appears in many ASL signs, so a neat 'K' shape will make your handshapes look more natural."
     ],
     commonMistakes: "Don't let your thumb stick out to the side - it must be between your index and middle fingers. Keep your ring and pinky fingers tucked in."
   },
@@ -212,7 +212,7 @@ const letterInstructions = {
     tips: [
       "This is one of the most recognizable ASL letters - it literally looks like 'L'.",
       "Your index finger and thumb should form a perfect right angle (90 degrees).",
-      "This handshape is also used in signs like 'like,' 'love,' and 'learn.'"
+      "This handshape appears in many ASL signs; a clear 'L' shape will make both fingerspelling and vocabulary easier."
     ],
     commonMistakes: "Don't let your thumb curve - keep it straight. Make sure your other three fingers are fully tucked into your palm."
   },
@@ -263,7 +263,7 @@ const letterInstructions = {
     tips: [
       "Think of making the shape of an egg or small ball in your hand.",
       "All five fingertips should meet at the same point.",
-      "This handshape is also used in signs like 'on,' 'off,' and 'open.'"
+      "This handshape appears in many ASL signs, so forming a smooth, rounded 'O' will be useful later."
     ],
     commonMistakes: "Don't flatten your fingers - they should be curved. Make sure all fingertips touch, not just some of them."
   },
@@ -314,7 +314,7 @@ const letterInstructions = {
     tips: [
       "This is the classic 'crossed fingers' gesture for good luck.",
       "The middle finger goes in front of (over) the index finger.",
-      "This handshape is also used in signs like 'right' and 'rule.'"
+      "This handshape appears in many ASL signs; keeping the fingers neatly crossed makes the letter easy to see."
     ],
     commonMistakes: "Don't cross your index over your middle - middle goes over index. Keep your ring and pinky fingers tucked in."
   },
@@ -331,7 +331,7 @@ const letterInstructions = {
     tips: [
       "This is like 'A' but with your thumb wrapped over your fingers instead of alongside.",
       "Think of making a strong fist - that's the 'S' handshape.",
-      "This handshape is also used in signs like 'school,' 'same,' and 'stop.'"
+      "This handshape appears in many ASL signs, so a strong, clear 'S' will help your signing look more confident."
     ],
     commonMistakes: "Don't position your thumb alongside your fingers like 'A' - it must wrap over them. Make sure your fist is tight."
   },
@@ -348,7 +348,7 @@ const letterInstructions = {
     tips: [
       "Think of your thumb poking up between your index and middle fingers.",
       "The thumb comes from underneath, not over the top.",
-      "This handshape is also used in signs like 'time' and 'today.'"
+      "This handshape appears in many ASL signs; keeping the thumb clearly between the fingers is important for accuracy."
     ],
     commonMistakes: "Don't wrap your thumb over your fingers like 'S' - it must be inserted between index and middle. Make sure the thumb pad is visible."
   },
@@ -365,7 +365,7 @@ const letterInstructions = {
     tips: [
       "This is like a peace sign but with fingers together, not spread.",
       "Think of your two fingers as one unit pointing upward.",
-      "This handshape is also used in signs like 'up,' 'under,' and 'uncle.'"
+      "This handshape appears in many ASL signs; think of it as a building block you will reuse often."
     ],
     commonMistakes: "Don't spread your index and middle fingers apart - they must be together. Don't confuse this with 'V' or 'H'."
   },
@@ -382,7 +382,7 @@ const letterInstructions = {
     tips: [
       "This is the classic 'peace sign' or 'victory sign' handshape.",
       "The spread between your fingers should be visible but not exaggerated.",
-      "This handshape is also used in signs like 'view,' 'video,' and 'vacation.'"
+      "This handshape appears in many ASL signs, so practice holding a relaxed but clear 'V' shape."
     ],
     commonMistakes: "Don't keep your fingers together like 'U' - they must be spread apart. Don't spread them too wide either."
   },
@@ -399,7 +399,7 @@ const letterInstructions = {
     tips: [
       "Think of this as 'V' with an extra finger (ring finger) added.",
       "The three fingers should be evenly spread apart.",
-      "This handshape is also used in signs like 'water,' 'week,' and 'work.'"
+      "This handshape appears in many ASL signs; three clear, evenly spaced fingers make the 'W' easy to read."
     ],
     commonMistakes: "Don't extend your pinky - only three fingers go up. Make sure all three fingers are spread apart, not touching."
   },
@@ -416,7 +416,7 @@ const letterInstructions = {
     tips: [
       "Think of your index finger as forming the shape of a hook.",
       "Only the index finger is involved - the tip curves down.",
-      "This handshape is also used in signs like 'need' and 'example.'"
+      "This handshape appears in many ASL signs, so keeping the index finger hooked and the others tucked is important."
     ],
     commonMistakes: "Don't keep your index finger straight - it must curve at the tip. Don't extend any other fingers."
   },
@@ -433,7 +433,7 @@ const letterInstructions = {
     tips: [
       "This is the 'hang loose' or 'shaka' sign from Hawaiian culture.",
       "Think of your thumb and pinky as the two arms of the letter 'Y'.",
-      "This handshape is also used in signs like 'yellow' and 'yes.'"
+      "This handshape appears in many ASL signs; a relaxed 'Y' will feel more natural over time."
     ],
     commonMistakes: "Don't extend any fingers other than thumb and pinky. Make sure your thumb points to the side, not up."
   },

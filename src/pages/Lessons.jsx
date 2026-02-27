@@ -16,6 +16,7 @@ function Lessons() {
     { value: 'all', label: 'All Lessons' },
     { value: 'alphabet', label: 'Alphabet' },
     { value: 'greetings', label: 'Greetings' },
+    { value: 'daily-conversation', label: 'Daily Conversation Signs' },
     { value: 'numbers', label: 'Numbers' },
     { value: 'common', label: 'Common Words' },
     { value: 'phrases', label: 'Phrases' },

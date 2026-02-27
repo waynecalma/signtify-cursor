@@ -16,6 +16,7 @@ import AdminRoute from './auth/AdminRoute';
 import Home from './pages/Home';
 import LessonAlphabet from './pages/LessonAlphabet';
 import LessonGreetings from './pages/LessonGreetings';
+import LessonDailyConversation from './pages/LessonDailyConversation';
 import LessonNumbers from './pages/LessonNumbers';
 import Quizzes from './pages/Quizzes';
 import Quiz from './pages/Quiz';
@@ -64,6 +65,11 @@ function App() {
               <Route path="/lessons/greetings" element={
                 <ProtectedRoute>
                   <LessonGreetings />
+                </ProtectedRoute>
+              } />
+              <Route path="/lessons/daily-conversation" element={
+                <ProtectedRoute>
+                  <LessonDailyConversation />
                 </ProtectedRoute>
               } />
               <Route path="/lessons/numbers" element={

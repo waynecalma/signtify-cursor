@@ -13,6 +13,7 @@ function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [alphabetFinished, setAlphabetFinished] = useState(false);
   const [greetingsFinished, setGreetingsFinished] = useState(false);
+  const [dailyConversationFinished, setDailyConversationFinished] = useState(false);
   const [hasCompletedFirstLesson, setHasCompletedFirstLesson] = useState(false);
   const [hasPassedAnyExam, setHasPassedAnyExam] = useState(false);
   const [lockNotification, setLockNotification] = useState(null);
@@ -94,17 +95,20 @@ function Navbar() {
       if (!currentUser) {
         setAlphabetFinished(false);
         setGreetingsFinished(false);
+        setDailyConversationFinished(false);
         setHasCompletedFirstLesson(false);
         setHasPassedAnyExam(false);
         return;
       }
-      const [alphabetDone, greetingsDone, profile] = await Promise.all([
+      const [alphabetDone, greetingsDone, dailyConvDone, profile] = await Promise.all([
         canCompleteLesson(currentUser.uid, 'alphabet', 26),
-        canCompleteLesson(currentUser.uid, 'greetings', 20),
+        canCompleteLesson(currentUser.uid, 'greetings', 12),
+        canCompleteLesson(currentUser.uid, 'numbers', 10),
         getUserProfile(currentUser.uid)
       ]);
       setAlphabetFinished(alphabetDone);
       setGreetingsFinished(greetingsDone);
+      setDailyConversationFinished(dailyConvDone);
       const completed = profile?.progress?.lessonsCompleted || [];
       setHasCompletedFirstLesson(completed.length > 0);
       const examsPassed = profile?.progress?.examsPassed || [];
@@ -226,6 +230,26 @@ function Navbar() {
                     onClick={() => handleLockedClick('Complete the Greetings lesson first to unlock Numbers (1–10).', '/lessons/greetings')}
                   >
                     Numbers 🔒
+                  </span>
+                )}
+              </li>
+              <li>
+                {dailyConversationFinished ? (
+                  <Link
+                    to="/lessons/daily-conversation"
+                    className={isActive('/lessons/daily-conversation') ? 'active' : ''}
+                    onClick={closeMobileMenu}
+                  >
+                    Daily Conversation
+                  </Link>
+                ) : (
+                  <span
+                    className="nav-link"
+                    style={{ opacity: 0.7, cursor: 'pointer', padding: '10px 15px', display: 'block' }}
+                    title="Finish Numbers to unlock Daily Conversation"
+                    onClick={() => handleLockedClick('Complete the Numbers lesson first to unlock Daily Conversation Signs.', '/lessons/numbers')}
+                  >
+                    Daily Conversation 🔒
                   </span>
                 )}
               </li>
