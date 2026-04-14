@@ -1,29 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
-import { getPassedExamDictionaryCategories } from '../auth/firestoreUtils';
 import '../styles/pages/Dictionary.css';
+
+const alphabetSvgModules = import.meta.glob('../../ASL pics/Alphabets_SVG/*.svg*', {
+  eager: true,
+  import: 'default'
+});
+
+const alphabetSvgMap = Object.entries(alphabetSvgModules).reduce((acc, [path, assetUrl]) => {
+  const fileName = path.split('/').pop() || '';
+  const letterMatch = fileName.match(/[A-Z]/);
+  if (letterMatch) {
+    acc[letterMatch[0]] = assetUrl;
+  }
+  return acc;
+}, {});
 
 function Dictionary() {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
-  const [unlockedCategories, setUnlockedCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [hasPassedAnyExam, setHasPassedAnyExam] = useState(false);
-
-  useEffect(() => {
-    const load = async () => {
-      if (!currentUser) {
-        setLoading(false);
-        return;
-      }
-      const categories = await getPassedExamDictionaryCategories(currentUser.uid);
-      setUnlockedCategories(categories);
-      setHasPassedAnyExam(categories.length > 0);
-      setLoading(false);
-    };
-    load();
-  }, [currentUser]);
 
   const dictionaryData = [
     // Alphabet
@@ -77,10 +73,8 @@ function Dictionary() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedWord, setSelectedWord] = useState(null);
 
-  // Only show dictionary entries for categories unlocked by passed proficiency exams
-  const allowedData = unlockedCategories.length > 0
-    ? dictionaryData.filter(item => unlockedCategories.includes(item.category))
-    : [];
+  // Dictionary is now fully accessible without exam restrictions.
+  const allowedData = dictionaryData;
   const categories = ['All', ...new Set(allowedData.map(item => item.category))];
 
   const filteredData = allowedData.filter(item => {
@@ -89,53 +83,21 @@ function Dictionary() {
     return matchesSearch && matchesCategory;
   });
 
-  if (loading) {
-    return (
-      <div className="dictionary-page">
-        <div className="dictionary-header">
-          <h1>Sign Language Dictionary</h1>
-          <p>Loading...</p>
-        </div>
-      </div>
-    );
-  }
+  const getAlphabetImage = (word, category) => {
+    if (category !== 'Alphabet') return null;
+    return alphabetSvgMap[word] || null;
+  };
 
   if (!currentUser) {
     navigate('/');
     return null;
   }
 
-  if (!hasPassedAnyExam) {
-    return (
-      <div className="dictionary-page">
-        <div className="dictionary-header">
-          <h1>Sign Language Dictionary</h1>
-          <p>Unlock the dictionary by passing proficiency exams</p>
-        </div>
-        <div className="dictionary-controls card" style={{ textAlign: 'center', padding: '2rem' }}>
-          <p style={{ marginBottom: '1rem', opacity: 0.9 }}>
-            🔒 Pass your first <strong>Proficiency Exam</strong> to unlock the ASL Dictionary.
-          </p>
-          <p style={{ marginBottom: '1.5rem', fontSize: '0.95rem', opacity: 0.85 }}>
-            Each exam you pass unlocks that category here (e.g. Alphabet exam → Alphabet category, Greetings exam → Greetings category).
-          </p>
-          <button
-            type="button"
-            className="filter-button active"
-            onClick={() => navigate('/proficiency-exams')}
-          >
-            Go to Proficiency Exams
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="dictionary-page">
       <div className="dictionary-header">
         <h1>Sign Language Dictionary</h1>
-        <p>Browse and search. Categories shown are unlocked by passing the matching proficiency exam (e.g. Alphabet exam → Alphabet, Greetings exam → Greetings).</p>
+        <p>Browse and search sign language words and categories.</p>
       </div>
 
       <div className="dictionary-controls card">
@@ -171,7 +133,15 @@ function Dictionary() {
                 onClick={() => setSelectedWord(item)}
               >
                 <div className="word-icon">
-                  {item.category === 'Alphabet' ? '✋' : '👋'}
+                  {getAlphabetImage(item.word, item.category) ? (
+                    <img
+                      src={getAlphabetImage(item.word, item.category)}
+                      alt={`ASL ${item.word}`}
+                      className="dictionary-alphabet-icon"
+                    />
+                  ) : (
+                    item.category === 'Alphabet' ? '✋' : '👋'
+                  )}
                 </div>
                 <h3>{item.word}</h3>
                 <span className="word-category">{item.category}</span>
@@ -194,7 +164,15 @@ function Dictionary() {
             
             <div className="sign-visual">
               <div className="sign-placeholder">
-                {selectedWord.category === 'Alphabet' ? '✋' : '👋'}
+                {getAlphabetImage(selectedWord.word, selectedWord.category) ? (
+                  <img
+                    src={getAlphabetImage(selectedWord.word, selectedWord.category)}
+                    alt={`Sign for ${selectedWord.word}`}
+                    className="dictionary-alphabet-detail-image"
+                  />
+                ) : (
+                  selectedWord.category === 'Alphabet' ? '✋' : '👋'
+                )}
                 <p>Sign for "{selectedWord.word}"</p>
               </div>
             </div>

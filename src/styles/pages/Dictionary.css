@@ -147,6 +147,14 @@
   animation: bounce 2s ease-in-out infinite;
 }
 
+.dictionary-alphabet-icon {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
 .word-card h3 {
   color: #2B2B2B;
   font-size: 1.1rem;
@@ -263,6 +271,14 @@
   font-size: 6rem;
   color: #58CC02;
   animation: pulse 2s ease-in-out infinite;
+}
+
+.dictionary-alphabet-detail-image {
+  width: 180px;
+  height: 240px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 @keyframes pulse {

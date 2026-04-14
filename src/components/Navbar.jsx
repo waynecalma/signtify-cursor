@@ -15,7 +15,6 @@ function Navbar() {
   const [greetingsFinished, setGreetingsFinished] = useState(false);
   const [dailyConversationFinished, setDailyConversationFinished] = useState(false);
   const [hasCompletedFirstLesson, setHasCompletedFirstLesson] = useState(false);
-  const [hasPassedAnyExam, setHasPassedAnyExam] = useState(false);
   const [lockNotification, setLockNotification] = useState(null);
   const lockNotificationTimeoutRef = useRef(null);
   const userMenuRef = useRef(null);
@@ -97,7 +96,6 @@ function Navbar() {
         setGreetingsFinished(false);
         setDailyConversationFinished(false);
         setHasCompletedFirstLesson(false);
-        setHasPassedAnyExam(false);
         return;
       }
       const [alphabetDone, greetingsDone, dailyConvDone, profile] = await Promise.all([
@@ -111,8 +109,6 @@ function Navbar() {
       setDailyConversationFinished(dailyConvDone);
       const completed = profile?.progress?.lessonsCompleted || [];
       setHasCompletedFirstLesson(completed.length > 0);
-      const examsPassed = profile?.progress?.examsPassed || [];
-      setHasPassedAnyExam(examsPassed.some(e => e.passed === true && e.percentage >= 80));
     };
     check();
     // Refresh when page becomes visible (user might have completed a lesson in another tab/window)
@@ -299,24 +295,13 @@ function Navbar() {
           </li>
           
           <li className="nav-item">
-            {hasPassedAnyExam ? (
-              <Link 
-                to="/dictionary" 
-                className={`nav-link ${isActive('/dictionary') ? 'active' : ''}`}
-                onClick={closeMobileMenu}
-              >
-                Dictionary
-              </Link>
-            ) : (
-              <span
-                className="nav-link nav-link-locked"
-                style={{ opacity: 0.7, cursor: 'pointer' }}
-                title="Pass your first proficiency exam to unlock Dictionary"
-                onClick={() => handleLockedClick('Pass your first proficiency exam to unlock the ASL Dictionary.', '/proficiency-exams')}
-              >
-                Dictionary 🔒
-              </span>
-            )}
+            <Link 
+              to="/dictionary" 
+              className={`nav-link ${isActive('/dictionary') ? 'active' : ''}`}
+              onClick={closeMobileMenu}
+            >
+              Dictionary
+            </Link>
           </li>
           
           {/* Temporarily removed Practice Gestures */}
